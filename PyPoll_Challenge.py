@@ -6,7 +6,11 @@ import csv
 import os
 
 # Add a variable to load a file from a path.
+<<<<<<< HEAD
 file_to_load = os.path.join("Resources", "election_results.csv")
+=======
+file_to_load = os.path.join("..", "Resources", "election_results.csv")
+>>>>>>> fb7f4511ec114e6a8d0f3b27895106ae12b896d9
 # Add a variable to save the file to a path.
 file_to_save = os.path.join("analysis", "election_analysis.txt")
 
@@ -39,6 +43,7 @@ with open(file_to_load) as election_data:
 
     # For each row in the CSV file.
     for row in reader:
+<<<<<<< HEAD
         # print(row)
         # # Add to the total vote count
         total_votes = total_votes + 1
@@ -61,6 +66,43 @@ with open(file_to_load) as election_data:
         candidate_votes[candidate_name] += 1
 
 
+=======
+
+        # Add to the total vote count
+        total_votes = total_votes + 1
+
+        # Get the candidate name from each row.
+        candidate_name = row[2]
+
+        # 3: Extract the county name from each row.
+        county_name = [2]
+
+        # If the candidate does not match any existing candidate add it to
+        # the candidate list
+        if candidate_name not in candidate_options:
+
+            # Add the candidate name to the candidate list.
+            candidate_options.append(candidate_name)
+
+            # And begin tracking that candidate's voter count.
+            candidate_votes[candidate_name] = 0
+
+        # Add a vote to that candidate's count
+        candidate_votes[candidate_name] += 1
+
+        # 4a: Write an if statement that checks that the
+        # county does not match any existing county in the county list.
+        if county_name not in county_list:
+
+            # 4b: Add the existing county to the list of counties.
+            county_list.append(county_name)
+
+            # 4c: Begin tracking the county's vote count.
+            county_name[county_votes] = 0
+
+        # 5: Add a vote to that county's vote count.
+        candidate_votes[county_name] += 1
+>>>>>>> fb7f4511ec114e6a8d0f3b27895106ae12b896d9
 
 
 # Save the results to our text file.
@@ -70,7 +112,11 @@ with open(file_to_save, "w") as txt_file:
     election_results = (
         f"\nElection Results\n"
         f"-------------------------\n"
+<<<<<<< HEAD
         f"Total Votes: {total_votes}\n"
+=======
+        f"Total Votes: {total_votes:,}\n"
+>>>>>>> fb7f4511ec114e6a8d0f3b27895106ae12b896d9
         f"-------------------------\n\n"
         f"County Votes:\n")
     print(election_results, end="")
@@ -78,6 +124,7 @@ with open(file_to_save, "w") as txt_file:
     txt_file.write(election_results)
 
     # 6a: Write a for loop to get the county from the county dictionary.
+<<<<<<< HEAD
     for candidate in candidate_votes:
         # 6b: Retrieve the county vote count.
         votes = candidate_votes[candidate]
@@ -85,6 +132,15 @@ with open(file_to_save, "w") as txt_file:
         vote_percentage = float(votes) / float(total_votes) * 100
         county_results = (
             f"{candidate}: {vote_percentage:.1f}% ({votes:,})\n")
+=======
+    for county_name in candidate_votes:
+        # 6b: Retrieve the county vote count.
+        votes = county_name[county_votes]
+        # 6c: Calculate the percentage of votes for the county.
+        vote_percentage = float(votes) / float(total_votes) * 100
+        county_results = (
+            f"{county_name}: {vote_percentage:.1f}% ({votes:,})\n")
+>>>>>>> fb7f4511ec114e6a8d0f3b27895106ae12b896d9
          # 6d: Print the county results to the terminal.
         print(county_results)
          # 6e: Save the county votes to a text file.
@@ -94,12 +150,19 @@ with open(file_to_save, "w") as txt_file:
             winning_count = votes
             winning_county = county_name
             winning_percentage = vote_percentage
+<<<<<<< HEAD
             winning_candidate=candidate 
+=======
+>>>>>>> fb7f4511ec114e6a8d0f3b27895106ae12b896d9
 
     # 7: Print the county with the largest turnout to the terminal.
     winning_county_summary = (
         f"-------------------------\n"
+<<<<<<< HEAD
         f"Winner: {winning_candidate}\n"
+=======
+        f"Winner: {winning_county}\n"
+>>>>>>> fb7f4511ec114e6a8d0f3b27895106ae12b896d9
         f"Winning Vote Count: {winning_count:,}\n"
         f"Winning Percentage: {winning_percentage:.1f}%\n"
         f"-------------------------\n")
